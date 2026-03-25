@@ -171,11 +171,15 @@ jobs:
             GITHUB_REPOSITORY: ${{ github.repository }}
             REGISTRY: ghcr.io
           run: |
+            
+            # 1. Force lowercase for the new image name to match GHCR requirements
+            IMAGE_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+            
             # Define the new image with tag
             NEW_IMAGE="${REGISTRY}/${GITHUB_REPOSITORY}:${IMAGE_TAG}"
             
             # Update the deployment file directly
-            sed -i "s|image: ${REGISTRY}/.*|image: ${NEW_IMAGE}|g" kubernetes/deployment.yaml
+            sed -i "s|image: ${REGISTRY}/.*|image: ${NEW_IMAGE}|gI" kubernetes/deployment.yaml
             
             # Verify the change
             echo "Updated deployment to use image: ${NEW_IMAGE}"
