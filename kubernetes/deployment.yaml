@@ -16,7 +16,7 @@ spec:
       spec:
         containers:
         - name: tictactoe
-          image:  ghcr.io/iam-veeramalla/devsecops-demo:sha-fb64dc2ac8cd8d79ad4a75c58326596b59eaf402
+          image: ghcr.io/pradeepgitbit/devsecops-av:sha-0a188fab2bd90a75966e6c2c2e65a29353e66a11
         # Image will be automatically updated by CI/CD pipeline
 
           imagePullPolicy: Always
